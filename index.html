@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flowmate Interactive Demo</title>
+  <style>
+    body { text-align: center; font-family: Arial; margin: 40px; }
+
+    h1 { opacity: 0; animation: fadeIn 2s forwards; }
+
+    button {
+      margin: 10px; padding: 12px 20px; font-size: 16px;
+      border: none; border-radius: 8px; cursor: pointer;
+      background: #4caf50; color: white; transition: all 0.3s ease;
+    }
+    button:hover { transform: scale(1.1); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+    .box {
+      width: 100px; height: 100px; background: coral; margin: 20px auto;
+      opacity: 0; transition: all 1s ease;
+    }
+    .box.active { opacity: 1; transform: translateY(50px); }
+
+    .circle {
+      width: 80px; height: 80px; background: dodgerblue; border-radius: 50%;
+      margin: 20px auto; animation: bounce 2s infinite;
+    }
+    .paused { animation-play-state: paused; }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-40px); }
+    }
+  </style>
+</head>
+<body>
+  <h1 id="headline">Welcome to Flowmate</h1>
+
+  <!-- Part 2 -->
+  <button onclick="changeText('Hello Flowmate!')">Change Text</button>
+  <button onclick="document.body.style.background=randomColor()">Random Background</button>
+
+  <!-- Part 3 -->
+  <button onclick="toggleBox()">Toggle Box</button>
+  <div class="box" id="box"></div>
+
+  <button onclick="toggleBounce()">Start/Stop Bounce</button>
+  <div class="circle" id="circle"></div>
+
+  <script>
+    // Part 2 Functions
+    function changeText(message) {
+      document.getElementById("headline").textContent = message;
+    }
+
+    function randomColor() {
+      let colors = ["#FF5733", "#33FF57", "#3357FF", "#FFD700"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // Part 3 Functions
+    function toggleBox() {
+      document.getElementById("box").classList.toggle("active");
+    }
+
+    function toggleBounce() {
+      document.getElementById("circle").classList.toggle("paused");
+    }
+  </script>
+</body>
+</html>
